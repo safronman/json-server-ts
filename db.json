@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "title": "22222",
+      "author": "dimych",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "CSS",
+      "author": "Dimcyh",
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "counter": {
+    "value": 47,
+    "maxValue": 100,
+    "delta": 2
+  }
+}

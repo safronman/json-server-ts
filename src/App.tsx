@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
 import './App.css';
+import {getInitialValue, increaseValue} from "./redux/counter-reducer";
+import {connect} from "react-redux";
+import {IState} from "./redux/store";
 
-const App: React.FC = () => {
+interface IMapProps {
+    value: number
+}
+interface IDispatchProps {
+    getInitialValue: () => void
+    increase: () => void
+}
+
+//type IProps = IMapProps & IDispatchProps;
+interface IProps extends IMapProps, IDispatchProps {}
+
+const App: React.FC<IProps> = (props: IProps) => {
+    useEffect(() => {
+        props.getInitialValue()
+    }, []);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <span>{props.value}</span>
+      <button onClick={props.increase}>+</button>
     </div>
   );
 }
 
-export default App;
+const mstp = (state: IState): IMapProps => ({
+    value: state.counter.value
+})
+
+export default connect(mstp, { increase: increaseValue, getInitialValue })(App);
